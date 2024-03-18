@@ -1,4 +1,5 @@
-﻿using Unity.Collections;
+﻿using Common;
+using Unity.Collections;
 using Unity.Entities;
 using Unity.NetCode;
 
@@ -26,6 +27,18 @@ namespace TMG.NFE_Tutorial
             foreach (var pendingNetworkId in pendingNetworkIds)
             {
                 ecb.AddComponent<NetworkStreamInGame>(pendingNetworkId);
+
+                var requestTeamEntity = ecb.CreateEntity();
+                ecb.AddComponent(requestTeamEntity, new MobaTeamRequest
+                {
+                    Value = requestedTeam
+                });
+                ecb.AddComponent(requestTeamEntity, new SendRpcCommandRequest
+                {
+                    TargetConnection = pendingNetworkId
+                });
+                
+                ecb.Playback(state.EntityManager);
             }
         }
     }
