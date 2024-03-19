@@ -1,4 +1,5 @@
-﻿using Common;
+﻿using System;
+using Common;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -38,13 +39,31 @@ namespace Server
                 var clientId = SystemAPI.GetComponent<NetworkId>(requestSource.SourceConnection).Value;
                 
                 Debug.Log($"Client with Id {clientId} is assigned to team {requestTeamType}");
+                
+                float3 spawnPosition;
+
+                switch (requestTeamType)
+                {
+                    case TeamType.Blue:
+                        spawnPosition = new float3(-50f, 1f, -50f);
+                        break;
+                    case TeamType.Red:
+                        spawnPosition = new float3(50f, 1f, 50f);
+                        break;
+                    default:
+                        continue;
+                }
 
                 var newChamp = ecb.Instantiate(championPrefab);
                 ecb.SetName(newChamp, "Champion");
 
-                var spawnPosition = new float3(0, 1, 0);
+                
                 var newTransform = LocalTransform.FromPosition(spawnPosition);
                 ecb.SetComponent(newChamp, newTransform);
+                ecb.SetComponent(newChamp, new GhostOwner{NetworkId = clientId});
+                ecb.SetComponent(newChamp, new MobaTeam{Value = requestTeamType});
+                
+                ecb.AppendToBuffer(requestSource.SourceConnection, new LinkedEntityGroup{Value = newChamp});
             }
 
             ecb.Playback(state.EntityManager);
