@@ -1,4 +1,5 @@
 ﻿using Cinemachine;
+using Common;
 using Unity.Entities;
 using UnityEngine;
 
@@ -43,13 +44,13 @@ namespace TMG.NFE_Tutorial
             _transposer = _cinemachineVirtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
         }
 
-        /*private void Start()
+        private void Start()
         {
             if (World.DefaultGameObjectInjectionWorld == null) return;
             _entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
             _teamControllerQuery = _entityManager.CreateEntityQuery(typeof(ClientTeamRequest));
             _localChampQuery = _entityManager.CreateEntityQuery(typeof(OwnerChampTag));
-
+        
             // Move the camera to the base corresponding to the team the player is on.
             // Spectators' cameras will start in the center of the map
             if (_teamControllerQuery.TryGetSingleton<ClientTeamRequest>(out var requestedTeam))
@@ -62,13 +63,13 @@ namespace TMG.NFE_Tutorial
                     _ => _spectatorPosition
                 };
                 transform.position = cameraPosition;
-
+        
                 if (team != TeamType.AutoAssign)
                 {
                     _cameraSet = true;
                 }
             }
-        }*/
+        }
 
         private void OnValidate()
         {
@@ -77,7 +78,7 @@ namespace TMG.NFE_Tutorial
 
         private void Update()
         {
-            // SetCameraForAutoAssignTeam();
+            SetCameraForAutoAssignTeam();
             MoveCamera();
             ZoomCamera();
         }
@@ -120,7 +121,7 @@ namespace TMG.NFE_Tutorial
             }
         }
 
-        /*private void SetCameraForAutoAssignTeam()
+        private void SetCameraForAutoAssignTeam()
         {
             if (!_cameraSet)
             {
@@ -137,7 +138,7 @@ namespace TMG.NFE_Tutorial
                     _cameraSet = true;
                 }
             }
-        }*/
+        }
 
         private void OnDrawGizmos()
         {

@@ -7,6 +7,8 @@ namespace Bakers
 {
     public class ChampAuthoring : MonoBehaviour
     {
+        public float MoveSpeed;
+        
         private class ChampAuthoringBaker : Baker<ChampAuthoring>
         {
             public override void Bake(ChampAuthoring authoring)
@@ -16,6 +18,8 @@ namespace Bakers
                 AddComponent<NewChampTag>(entity);
                 AddComponent<MobaTeam>(entity);
                 AddComponent<URPMaterialPropertyBaseColor>(entity);
+                AddComponent<ChampMoveTargetPosition>(entity);
+                AddComponent(entity, new CharacterMoveSpeed{ Value = authoring.MoveSpeed});
             }
         }
     }
