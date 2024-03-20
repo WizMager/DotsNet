@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 8371266242411514044}
   - component: {fileID: -2293352519496087944}
   - component: {fileID: 9109658604866127568}
+  - component: {fileID: -1214934882067044214}
+  - component: {fileID: -8385948547594282036}
   m_Layer: 0
   m_Name: Tower
   m_TagString: Untagged
@@ -269,3 +271,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-1214934882067044214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1808960621481842931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e9b224001e5496c89b57e1bdc0737ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHitPoints: 250
+--- !u!114 &-8385948547594282036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1808960621481842931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a854ab5514b464abee12d030e1fc41d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MobaTeam: 0

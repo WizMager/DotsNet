@@ -132,6 +132,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8385948547594282036, guid: 38f4e9377d234a64488bff6c7061bc95,
+        type: 3}
+      propertyPath: MobaTeam
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 738316474713273408, guid: 38f4e9377d234a64488bff6c7061bc95,
         type: 3}
       propertyPath: MobaTeam
@@ -243,6 +248,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8385948547594282036, guid: 38f4e9377d234a64488bff6c7061bc95,
+        type: 3}
+      propertyPath: MobaTeam
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 738316474713273408, guid: 38f4e9377d234a64488bff6c7061bc95,
         type: 3}
       propertyPath: MobaTeam
@@ -354,6 +364,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8385948547594282036, guid: 38f4e9377d234a64488bff6c7061bc95,
+        type: 3}
+      propertyPath: MobaTeam
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 738316474713273408, guid: 38f4e9377d234a64488bff6c7061bc95,
         type: 3}
       propertyPath: MobaTeam
@@ -465,6 +480,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8385948547594282036, guid: 38f4e9377d234a64488bff6c7061bc95,
+        type: 3}
+      propertyPath: MobaTeam
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 738316474713273408, guid: 38f4e9377d234a64488bff6c7061bc95,
         type: 3}
       propertyPath: MobaTeam
@@ -576,6 +596,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8385948547594282036, guid: 38f4e9377d234a64488bff6c7061bc95,
+        type: 3}
+      propertyPath: MobaTeam
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 738316474713273408, guid: 38f4e9377d234a64488bff6c7061bc95,
         type: 3}
       propertyPath: MobaTeam
@@ -731,6 +756,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8385948547594282036, guid: 38f4e9377d234a64488bff6c7061bc95,
+        type: 3}
+      propertyPath: MobaTeam
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 738316474713273408, guid: 38f4e9377d234a64488bff6c7061bc95,
         type: 3}
       propertyPath: MobaTeam
@@ -1017,6 +1047,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8385948547594282036, guid: 38f4e9377d234a64488bff6c7061bc95,
+        type: 3}
+      propertyPath: MobaTeam
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 738316474713273408, guid: 38f4e9377d234a64488bff6c7061bc95,
         type: 3}
       propertyPath: MobaTeam
@@ -1283,6 +1318,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8385948547594282036, guid: 38f4e9377d234a64488bff6c7061bc95,
+        type: 3}
+      propertyPath: MobaTeam
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 738316474713273408, guid: 38f4e9377d234a64488bff6c7061bc95,
         type: 3}
       propertyPath: MobaTeam
@@ -1464,6 +1504,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a4b62a69d54e80347bd546999c6d4b9e, type: 2}
+    - target: {fileID: 7632629273221569027, guid: c22c40ef4537da44597359c8d8e582e2,
+        type: 3}
+      propertyPath: MobaTeam
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4814756161980433909, guid: c22c40ef4537da44597359c8d8e582e2, type: 3}
     m_RemovedGameObjects: []
@@ -1579,6 +1624,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BlueBase
+      objectReference: {fileID: 0}
+    - target: {fileID: 7632629273221569027, guid: c22c40ef4537da44597359c8d8e582e2,
+        type: 3}
+      propertyPath: MobaTeam
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4814756161980433909, guid: c22c40ef4537da44597359c8d8e582e2, type: 3}

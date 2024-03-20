@@ -20,6 +20,7 @@ namespace Bakers
                 AddComponent<URPMaterialPropertyBaseColor>(entity);
                 AddComponent<ChampMoveTargetPosition>(entity);
                 AddComponent(entity, new CharacterMoveSpeed{ Value = authoring.MoveSpeed});
+                AddComponent<AbilityInput>(entity);
             }
         }
     }

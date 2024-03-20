@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: -4543992846123627166}
   - component: {fileID: -566280179298504254}
   - component: {fileID: -1463525703643454138}
+  - component: {fileID: -5430753622700225908}
+  - component: {fileID: 1286766825413299214}
   m_Layer: 0
   m_Name: ChampionPrefab
   m_TagString: Untagged
@@ -307,6 +309,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveSpeed: 3.5
+--- !u!114 &-5430753622700225908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403193853099150282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e9b224001e5496c89b57e1bdc0737ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHitPoints: 1000
+--- !u!114 &1286766825413299214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403193853099150282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eb2f222750d48a58e94715b95ec0837, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AoeAbility: {fileID: 2857083215919053045, guid: 7133de65fa0aba749b61c892d1ee74d6,
+    type: 3}
 --- !u!1 &859060646936255700
 GameObject:
   m_ObjectHideFlags: 0
