@@ -1,6 +1,7 @@
 ﻿using Unity.Burst;
 using Unity.Entities;
 using Unity.NetCode;
+using Unity.Transforms;
 
 namespace Common
 {
@@ -21,8 +22,18 @@ namespace Common
 
             var networkTime = SystemAPI.GetSingleton<NetworkTime>();
             if (!networkTime.IsFirstTimeFullyPredictingTick) return;
-            
-            
+
+            var currentTick = networkTime.ServerTick;
+            foreach (var aoe in SystemAPI.Query<AoeAspect>().WithAll<Simulate>())
+            {
+                if (aoe.ShouldAttack)
+                {
+                    var newAoeAbility = ecb.Instantiate(aoe.AbilityPrefab);
+                    var abilityTransform = LocalTransform.FromPosition(aoe.AttackPosition);
+                    ecb.SetComponent(newAoeAbility, abilityTransform);
+                    ecb.SetComponent(newAoeAbility, aoe.Team);
+                }
+            }
         }
     }
 }

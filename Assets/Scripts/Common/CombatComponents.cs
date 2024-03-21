@@ -30,4 +30,16 @@ namespace Common
     {
         public Entity AoeAbility;
     }
+
+    public struct DestroyOnTimer : IComponentData
+    {
+        public float Value;
+    }
+
+    public struct DestroyAtTick : IComponentData
+    {
+        [GhostField]public NetworkTick Value;
+    }
+    
+    public struct DestroyEntityTag : IComponentData {}
 }
