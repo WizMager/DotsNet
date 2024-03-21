@@ -42,4 +42,14 @@ namespace Common
     }
     
     public struct DestroyEntityTag : IComponentData {}
+
+    public struct DamageOnTrigger : IComponentData
+    {
+        public int Value;
+    }
+
+    public struct AlreadyDamagedEntity : IBufferElementData
+    {
+        public Entity Value;
+    }
 }

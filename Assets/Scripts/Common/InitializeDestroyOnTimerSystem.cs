@@ -10,7 +10,7 @@ namespace Common
         {
             state.RequireForUpdate<NetworkTime>();
         }
-
+        
         public void OnUpdate(ref SystemState state)
         {
             var ecb = new EntityCommandBuffer(Allocator.Temp);
