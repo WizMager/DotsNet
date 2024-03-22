@@ -13,6 +13,8 @@ namespace Common
         
         public void OnUpdate(ref SystemState state)
         {
+            if (NetCodeConfig.Global == null) return;
+            
             var ecb = new EntityCommandBuffer(Allocator.Temp);
             var simulationTickRate = NetCodeConfig.Global.ClientServerTickRate.SimulationTickRate;
             var currentTick = SystemAPI.GetSingleton<NetworkTime>().ServerTick;
