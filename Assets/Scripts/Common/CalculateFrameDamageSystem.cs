@@ -21,7 +21,7 @@ namespace Common
             {
                 if (damageBuffer.IsEmpty)
                 {
-                    damageThisTickBuffer.Add(new DamageThisTick
+                    damageThisTickBuffer.AddCommandData(new DamageThisTick
                     {
                         Tick = currentTick,
                         Value = 0
@@ -35,12 +35,18 @@ namespace Common
                         totalDamage = damageThisTick.Value;
                     }
 
-                    foreach (var damage in damageThisTickBuffer)
+                    foreach (var damage in damageBuffer)
                     {
                         totalDamage += damage.Value;
                     }
                     
+                    damageThisTickBuffer.AddCommandData(new DamageThisTick
+                    {
+                        Tick = currentTick,
+                        Value = totalDamage
+                    });
                     
+                    damageBuffer.Clear();
                 }
             }
         }
