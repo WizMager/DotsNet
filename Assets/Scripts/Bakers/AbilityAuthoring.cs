@@ -8,7 +8,11 @@ namespace Bakers
     public class AbilityAuthoring : MonoBehaviour
     {
         public GameObject AoeAbility;
-        public float AbilityCooldown;
+        public GameObject SkillShotAbility;
+        
+        public float AoeAbilityCooldown;
+        public float SkillShotAbilityCooldown;
+        
         public NetCodeConfig NetCodeConfig;
         private int SimulationTickRate => NetCodeConfig.ClientServerTickRate.SimulationTickRate;
         
@@ -19,11 +23,13 @@ namespace Bakers
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
                 AddComponent(entity, new AbilityPrefabs
                 {
-                    AoeAbility = GetEntity(authoring.AoeAbility, TransformUsageFlags.Dynamic)
+                    AoeAbility = GetEntity(authoring.AoeAbility, TransformUsageFlags.Dynamic),
+                    SkillShotAbility = GetEntity(authoring.SkillShotAbility, TransformUsageFlags.Dynamic)
                 });
                 AddComponent(entity, new AbilityCooldownTicks
                 {
-                    AoeAbility = (uint)(authoring.AbilityCooldown * authoring.SimulationTickRate)
+                    AoeAbility = (uint)(authoring.AoeAbilityCooldown * authoring.SimulationTickRate),
+                    SkillShotAbility = (uint)(authoring.SkillShotAbilityCooldown * authoring.SimulationTickRate)
                 });
                 AddBuffer<AbilityCooldownTargetTicks>(entity);
             }

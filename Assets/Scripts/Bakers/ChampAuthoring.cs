@@ -21,6 +21,7 @@ namespace Bakers
                 AddComponent<ChampMoveTargetPosition>(entity);
                 AddComponent(entity, new CharacterMoveSpeed{ Value = authoring.MoveSpeed});
                 AddComponent<AbilityInput>(entity);
+                AddComponent<AimInput>(entity);
             }
         }
     }
