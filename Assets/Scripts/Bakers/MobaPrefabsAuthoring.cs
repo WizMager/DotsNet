@@ -6,7 +6,12 @@ namespace Bakers
 {
     public class MobaPrefabsAuthoring : MonoBehaviour
     {
+        [Header("Entities: ")]
         public GameObject Champion;
+
+        [Space] 
+        [Header("GameObjects: ")] 
+        public GameObject HealthBarPrefab;
         
         private class MobaPrefabsAuthoringBaker : Baker<MobaPrefabsAuthoring>
         {
@@ -17,6 +22,8 @@ namespace Bakers
                 {
                     Champion = GetEntity(authoring.Champion, TransformUsageFlags.Dynamic)
                 });
+                
+                AddComponentObject(prefabContainerEntity, new UIPrefabs{ HealthBar = authoring.HealthBarPrefab });
             }
         }
     }

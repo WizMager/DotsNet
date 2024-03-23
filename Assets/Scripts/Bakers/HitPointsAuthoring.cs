@@ -1,4 +1,5 @@
 ﻿using Common;
+using TMG.NFE_Tutorial;
 using Unity.Entities;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ namespace Bakers
     public class HitPointsAuthoring : MonoBehaviour
     {
         public int MaxHitPoints;
+        public Vector3 HealthbarOffset;
         
         private class HitPointsAuthoringBaker : Baker<HitPointsAuthoring>
         {
@@ -17,6 +19,7 @@ namespace Bakers
                 AddComponent(entity, new CurrentHitPoints{ Value = authoring.MaxHitPoints });
                 AddBuffer<DamageBufferElement>(entity);
                 AddBuffer<DamageThisTick>(entity);
+                AddComponent(entity, new HealthBarOffset{ Value = authoring.HealthbarOffset});
             }
         }
     }
