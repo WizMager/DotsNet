@@ -29,6 +29,19 @@ namespace TMG.NFE_Tutorial
                 SetHealthBar(newHealthBar, maxHitPoints.Value, maxHitPoints.Value);
                 ecb.AddComponent(entity, new HealthBarUiReference{ Value = newHealthBar });
             }
+
+            foreach (var (transform, healthBarOffset, currentHitPoints, maxHitPoints, healthBarUiReference) in SystemAPI.Query<LocalTransform, HealthBarOffset, CurrentHitPoints, MaxHitPoints, HealthBarUiReference>())
+            {
+                var healthBarPosition = transform.Position + healthBarOffset.Value;
+                healthBarUiReference.Value.transform.position = healthBarPosition;
+                SetHealthBar(healthBarUiReference.Value, currentHitPoints.Value, maxHitPoints.Value);
+            }
+
+            foreach (var (healthBarUiReference, entity) in SystemAPI.Query<HealthBarUiReference>().WithNone<LocalTransform>().WithEntityAccess())
+            {
+                Object.Destroy(healthBarUiReference.Value);
+                ecb.RemoveComponent<HealthBarUiReference>(entity);
+            }
         }
 
         private void SetHealthBar(GameObject healthBarCanvasObject, int curHitPoints, int maxHitPoints)
