@@ -1,6 +1,9 @@
-﻿using Unity.Collections;
+﻿using TMG.NFE_Tutorial;
+using Unity.Collections;
 using Unity.Entities;
 using Unity.NetCode;
+using Unity.Transforms;
+using UnityEngine;
 
 namespace Common
 {
@@ -50,6 +53,12 @@ namespace Common
                 if (!skillShot.BeginAttack) continue;
                 
                 ecb.AddComponent<AimSkillShotTag>(skillShot.ChampionEntity);
+
+                if (isServer || !SystemAPI.HasComponent<OwnerChampTag>(skillShot.ChampionEntity)) continue;
+
+                var skillShotUiPrefab = SystemAPI.ManagedAPI.GetSingleton<UIPrefabs>().SkillShot;
+                var newSkillShot = Object.Instantiate(skillShotUiPrefab, skillShot.AttackPosition, Quaternion.identity);
+                ecb.AddComponent(skillShot.ChampionEntity, new SkillShotUiReference{ Value = newSkillShot });
             }
 
             foreach (var skillShot in SystemAPI.Query<SkillShotAspect>().WithAll<AimSkillShotTag, Simulate>())
@@ -74,6 +83,20 @@ namespace Common
                 curTargetTick.Tick = nextTick;
                 
                 skillShot.CooldownTargetTicks.AddCommandData(curTargetTick);
+            }
+
+            foreach (var (abilityInput, skillShotUiReference, entity) in SystemAPI.Query<AbilityInput, SkillShotUiReference>().WithAll<Simulate>().WithEntityAccess())
+            {
+                if (!abilityInput.ConfirmSkillShotAbility.IsSet) continue;
+                
+                Object.Destroy(skillShotUiReference.Value);
+                ecb.RemoveComponent<SkillShotUiReference>(entity);
+            }
+
+            foreach (var (skillShotUiReference, entity) in SystemAPI.Query<SkillShotUiReference>().WithAll<Simulate>().WithNone<LocalTransform>().WithEntityAccess())
+            {
+                Object.Destroy(skillShotUiReference.Value);
+                ecb.RemoveComponent<SkillShotUiReference>(entity);
             }
             
             ecb.Playback(state.EntityManager);

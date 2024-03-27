@@ -26,8 +26,10 @@ namespace Common
 
         public void OnUpdate(ref SystemState state)
         {
-            foreach (var (aimInput, transform) in SystemAPI.Query<RefRW<AimInput>, LocalTransform>().WithAll<AimSkillShotTag, OwnerChampTag>())
+            foreach (var (aimInput, transform, skillShotUiReference) in SystemAPI.Query<RefRW<AimInput>, LocalTransform, SkillShotUiReference>().WithAll<AimSkillShotTag, OwnerChampTag>())
             {
+                skillShotUiReference.Value.transform.position = transform.Position;
+                
                 var collisionWorld = SystemAPI.GetSingleton<PhysicsWorldSingleton>().CollisionWorld;
                 var cameraEntity = SystemAPI.GetSingletonEntity<MainCameraTag>();
                 var mainCamera = state.EntityManager.GetComponentObject<MainCamera>(cameraEntity).Value;
@@ -49,6 +51,10 @@ namespace Common
                     directionToTarget.y = transform.Position.y;
                     directionToTarget = math.normalize(directionToTarget);
                     aimInput.ValueRW.Value = directionToTarget;
+
+                    var angleRad = math.atan2(directionToTarget.z, directionToTarget.x);
+                    var angleDeg = math.degrees(angleRad);
+                    skillShotUiReference.Value.transform.rotation = Quaternion.Euler(0, -angleDeg, 0);
                 }
             }
         }

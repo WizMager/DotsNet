@@ -21,7 +21,7 @@ namespace TMG.NFE_Tutorial
             var ecbSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();
             var ecb = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged);
 
-            foreach (var (transform, healthBarOffset, maxHitPoints, entity) in SystemAPI.Query<LocalTransform, HealthBarOffset, MaxHitPoints>().WithAll<HealthBarUiReference>().WithEntityAccess())
+            foreach (var (transform, healthBarOffset, maxHitPoints, entity) in SystemAPI.Query<LocalTransform, HealthBarOffset, MaxHitPoints>().WithNone<HealthBarUiReference>().WithEntityAccess())
             {
                 var healthBarPrefab = SystemAPI.ManagedAPI.GetSingleton<UIPrefabs>().HealthBar;
                 var spawnPosition = transform.Position + healthBarOffset.Value;

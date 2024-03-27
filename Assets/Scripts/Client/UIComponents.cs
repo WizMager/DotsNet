@@ -13,4 +13,9 @@ namespace TMG.NFE_Tutorial
     {
         public float3 Value;
     }
+
+    public class SkillShotUiReference : ICleanupComponentData
+    {
+        public GameObject Value;
+    }
 }

@@ -12,6 +12,7 @@ namespace Bakers
         [Space] 
         [Header("GameObjects: ")] 
         public GameObject HealthBarPrefab;
+        public GameObject SkillShotAimPrefab;
         
         private class MobaPrefabsAuthoringBaker : Baker<MobaPrefabsAuthoring>
         {
@@ -23,7 +24,11 @@ namespace Bakers
                     Champion = GetEntity(authoring.Champion, TransformUsageFlags.Dynamic)
                 });
                 
-                AddComponentObject(prefabContainerEntity, new UIPrefabs{ HealthBar = authoring.HealthBarPrefab });
+                AddComponentObject(prefabContainerEntity, new UIPrefabs
+                {
+                    HealthBar = authoring.HealthBarPrefab,
+                    SkillShot = authoring.SkillShotAimPrefab
+                });
             }
         }
     }
