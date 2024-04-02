@@ -16,11 +16,23 @@ namespace Common
 
         public void OnCreate(ref SystemState state)
         {
+            state.RequireForUpdate<PhysicsWorldSingleton>();
             _npcAttackFilter = new CollisionFilter
             {
                 BelongsTo = 1 << 6,
                 CollidesWith = 1 << 1 | 1 << 2 | 1 << 4
             };
+        }
+
+        [BurstCompile]
+        public void OnUpdate(ref SystemState state)
+        {
+            state.Dependency = new NpcTargetingJob
+            {
+                CollisionWorld = SystemAPI.GetSingleton<PhysicsWorldSingleton>().CollisionWorld,
+                CollisionFilter = _npcAttackFilter,
+                MobaTeamLookup = SystemAPI.GetComponentLookup<MobaTeam>(true)
+            }.ScheduleParallel(state.Dependency);
         }
 
         [BurstCompile]
@@ -38,8 +50,28 @@ namespace Common
                 
                 if (CollisionWorld.OverlapSphere(transform.Position, targetRadius.Value, ref hits, CollisionFilter))
                 {
+                    var closestDisatnce = float.MaxValue;
+                    var closestEntity = Entity.Null;
+
+                    foreach (var hit in hits)
+                    {
+                        if (!MobaTeamLookup.TryGetComponent(hit.Entity, out var mobaTeam)) continue;
+                        if (mobaTeam.Value == MobaTeamLookup[npcEntity].Value) continue;
+
+                        if (hit.Distance < closestDisatnce)
+                        {
+                            closestDisatnce = hit.Distance;
+                            closestEntity = hit.Entity;
+                        }
+                    }
                     
+                    targetEntity.Value = closestEntity;
+                }else
+                {
+                    targetEntity.Value = Entity.Null;
                 }
+
+                hits.Dispose();
             }
         }
     }
